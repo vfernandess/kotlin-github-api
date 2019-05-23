@@ -21,7 +21,11 @@ interface UserListContract {
 
         fun showError()
 
-//        fun hideError()
+        fun hideError()
+
+        fun showEmptyError()
+
+        fun hideEmpty()
     }
 
     interface Presenter {
@@ -29,6 +33,10 @@ interface UserListContract {
         fun load()
 
         fun onItemSelected(position: Int)
+
+        fun getUserCount(): Int
+
+        fun putValues(view: UserListContract.ItemView, position: Int)
 
         fun destroy()
     }

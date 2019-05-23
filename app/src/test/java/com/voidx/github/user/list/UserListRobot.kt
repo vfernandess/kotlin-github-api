@@ -16,6 +16,14 @@ class UserListRobot {
             return Observable.just(result)
         }
 
+        fun injectError(): Observable<List<UserVO>> {
+            return TestUtils.createConnectionErrorObservable()
+        }
+
+        fun injectEmpty(): Observable<List<UserVO>> {
+            return Observable.just(emptyList())
+        }
+
     }
 
 }

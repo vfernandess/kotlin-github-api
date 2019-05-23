@@ -3,14 +3,14 @@ package com.voidx.github.feature.user.list.business
 import com.voidx.github.data.network.vo.UserVO
 import com.voidx.github.data.repository.UserDataSource
 import com.voidx.github.feature.user.list.UserListContract
-import com.voidx.github.feature.user.list.view.ListUserAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class UserListPresenter(
     private val view: UserListContract.View,
-    private val userDataSource: UserDataSource): UserListContract.Presenter, ListUserAdapter.ListUserDelegate {
+    private val userDataSource: UserDataSource
+) : UserListContract.Presenter {
 
     private var disposable = CompositeDisposable()
     private var users: List<UserVO>? = null
@@ -21,18 +21,8 @@ class UserListPresenter(
             .getUsers()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(
-                lambda@{ users: List<UserVO> ->
-                    this.users = users
-                    view.hideLoading()
-                    view.showUsers()
-                },
-                lambda@{
-                    view.hideLoading()
-                    view.hideUsers()
-                    view.showError()
-                }
-            )
+            .subscribe(::handleSuccess, ::handleError)
+
         disposable.add(disposableList)
     }
 
@@ -44,6 +34,7 @@ class UserListPresenter(
 
     override fun destroy() {
         disposable.clear()
+        users = null
     }
 
     override fun getUserCount(): Int {
@@ -55,6 +46,28 @@ class UserListPresenter(
             val user = it[position]
             view.putValues(user.name, user.avatar, user.login)
         }
+    }
+
+    private fun handleSuccess(users: List<UserVO>) {
+        view.hideLoading()
+        view.hideError()
+
+        if (users.isEmpty()) {
+            view.hideUsers()
+            view.showEmptyError()
+            return
+        }
+
+        this.users = users
+        view.showUsers()
+        view.hideEmpty()
+    }
+
+    private fun handleError(error: Throwable) {
+        view.hideLoading()
+        view.hideUsers()
+        view.hideEmpty()
+        view.showError()
     }
 
 }

@@ -62,8 +62,8 @@ class TestUtils {
             return json
         }
 
-        fun createConnectionErrorObservable(): Observable<Any> {
-            return Observable.error<Any>(createGenericError(500))
+        fun <T> createConnectionErrorObservable(): Observable<T> {
+            return Observable.error<T>(createGenericError(500))
         }
 
         fun createGenericError(errorCode: Int): HttpException {
