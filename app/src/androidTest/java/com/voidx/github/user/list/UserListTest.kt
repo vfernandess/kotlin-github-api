@@ -1,5 +1,6 @@
 package com.voidx.github.user.list
 
+import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.rule.ActivityTestRule
 import br.com.concretesolutions.requestmatcher.InstrumentedTestRequestMatcherRule
 import br.com.concretesolutions.requestmatcher.RequestMatcherRule
@@ -12,11 +13,8 @@ import org.junit.Test
 
 class UserListTest {
 
-    private var mMockWebServer: MockWebServer? = null
-
-    init {
-        mMockWebServer = MockWebServer()
-        mMockWebServer?.start(8080)
+    private var mMockWebServer: MockWebServer = MockWebServer().apply {
+        this.start(8080)
     }
 
     @Rule
@@ -40,11 +38,33 @@ class UserListTest {
     }
 
     @Test
-    fun `show_github_users_successfully`() {
+    fun show_github_users_successfully() {
         robot
             .start()
             .withSuccessfulResponses()
+            .checkUsersAreDisplayed()
+            .checkEmptyErrorIsNotDisplayed()
+            .checkErrorIsNotDisplayed()
+    }
 
+    @Test
+    fun show_empty_error_successfully() {
+        robot
+            .start()
+            .withEmptySuccessfulResponses()
+            .checkEmptyErrorIsDisplayed()
+            .checkUsersAreNotDisplayed()
+            .checkErrorIsNotDisplayed()
+    }
+
+    @Test
+    fun show_error_successfully() {
+        robot
+            .start()
+            .withErrorResponse()
+            .checkErrorIsDisplayed()
+            .checkEmptyErrorIsNotDisplayed()
+            .checkUsersAreNotDisplayed()
     }
 
 }
