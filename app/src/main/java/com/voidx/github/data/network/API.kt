@@ -5,9 +5,11 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+const val USERS_LIST = "users"
+
 interface API {
 
-    @GET("users")
+    @GET(USERS_LIST)
     fun getUsers(): Observable<List<UserVO>>
 
     @GET("users/{username}")

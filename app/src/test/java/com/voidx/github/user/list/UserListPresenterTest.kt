@@ -3,9 +3,9 @@ package com.voidx.github.user.list
 import com.voidx.github.data.repository.UserDataSource
 import com.voidx.github.feature.user.list.UserListContract
 import com.voidx.github.feature.user.list.business.UserListPresenter
-import com.voidx.github.user.list.UserListRobot.Companion.injectEmpty
-import com.voidx.github.user.list.UserListRobot.Companion.injectError
-import com.voidx.github.user.list.UserListRobot.Companion.injectUserList
+import com.voidx.github.user.list.UserListObjects.Companion.injectEmpty
+import com.voidx.github.user.list.UserListObjects.Companion.injectError
+import com.voidx.github.user.list.UserListObjects.Companion.injectUserList
 import com.voidx.github.utils.RxImmediateSchedulerRule
 import io.mockk.every
 import io.mockk.mockk
@@ -96,7 +96,7 @@ class UserListPresenterTest {
         }
 
         verify {
-            itemView.putValues(any(), any(), any())
+            itemView.putValues(any(), any())
         }
     }
 
@@ -118,7 +118,7 @@ class UserListPresenterTest {
         }
 
         verify {
-            itemView.putValues(any(), any(), any())
+            itemView.putValues(any(), any())
         }
     }
 

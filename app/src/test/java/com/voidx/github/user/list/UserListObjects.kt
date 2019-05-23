@@ -6,7 +6,7 @@ import com.voidx.github.utils.TestUtils
 import io.reactivex.Observable
 
 
-class UserListRobot {
+class UserListObjects {
 
     companion object {
 
