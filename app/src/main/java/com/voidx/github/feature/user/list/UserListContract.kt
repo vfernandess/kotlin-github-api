@@ -4,7 +4,7 @@ interface UserListContract {
 
     interface ItemView {
 
-        fun putValues(name: String, photo: String, nick: String)
+        fun putValues(photo: String, nick: String)
     }
 
     interface View {
@@ -36,7 +36,7 @@ interface UserListContract {
 
         fun getUserCount(): Int
 
-        fun putValues(view: UserListContract.ItemView, position: Int)
+        fun putValues(view: ItemView, position: Int)
 
         fun destroy()
     }

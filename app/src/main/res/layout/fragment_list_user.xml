@@ -17,4 +17,38 @@
             android:layout_width="@dimen/empty"
             android:layout_height="@dimen/empty"/>
 
+    <include
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="@dimen/empty"
+            android:layout_height="@dimen/empty"
+            android:id="@+id/loadingContainer"
+            tools:visibility="gone"
+            layout="@layout/loading"/>
+
+
+    <include
+            android:id="@+id/emptyContainer"
+            layout="@layout/empty"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="@dimen/empty"
+            android:layout_height="@dimen/empty"
+            tools:visibility="gone"/>
+
+    <include
+            android:id="@+id/errorContainer"
+            layout="@layout/unknown"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="@dimen/empty"
+            android:layout_height="@dimen/empty"
+            tools:visibility="gone"/>
+
 </android.support.constraint.ConstraintLayout>

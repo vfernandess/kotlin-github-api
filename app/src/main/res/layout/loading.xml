@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shimmer_duration="2000">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:padding="@dimen/size_01x"
+            android:layout_height="wrap_content">
+
+        <include
+                android:id="@+id/loading1"
+                android:layout_width="@dimen/empty"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/loading2"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                android:layout_marginEnd="@dimen/size_01x"
+                layout="@layout/placeholder_loading_item"/>
+
+        <include
+                android:id="@+id/loading2"
+                android:layout_width="@dimen/empty"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/loading1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="@dimen/size_01x"
+                layout="@layout/placeholder_loading_item"/>
+
+        <include
+                android:id="@+id/loading3"
+                android:layout_width="@dimen/empty"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/loading1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/loading1"
+                android:layout_marginTop="@dimen/size_02x"
+                layout="@layout/placeholder_loading_item"/>
+
+        <include
+                android:id="@+id/loading4"
+                android:layout_width="@dimen/empty"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loading2"
+                app:layout_constraintStart_toStartOf="@+id/loading2"
+                android:layout_marginTop="@dimen/size_02x"
+                layout="@layout/placeholder_loading_item"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GitHub</string>
-    <string name="action_settings">Settings</string>
+    <string name="empty_results">Nenhum resultado encontrado</string>
+    <string name="unknown_problem">Ooops..  Algo não esta correto.</string>
+    <string name="nick_formatter">\@%1$s</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

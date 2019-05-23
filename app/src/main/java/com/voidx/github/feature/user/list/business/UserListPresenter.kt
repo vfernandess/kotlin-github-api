@@ -16,12 +16,22 @@ class UserListPresenter(
     private var users: List<UserVO>? = null
 
     override fun load() {
+        view.hideError()
+        view.hideEmpty()
+        view.hideUsers()
         view.showLoading()
+
         val disposableList = userDataSource
             .getUsers()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(::handleSuccess, ::handleError)
+            .subscribe(
+                lambda@ {
+                    handleSuccess(it)
+                },
+                lambda@{
+                    handleError(it)
+                })
 
         disposable.add(disposableList)
     }
@@ -44,7 +54,7 @@ class UserListPresenter(
     override fun putValues(view: UserListContract.ItemView, position: Int) {
         users?.let {
             val user = it[position]
-            view.putValues(user.name, user.avatar, user.login)
+            view.putValues(user.avatar, user.login)
         }
     }
 

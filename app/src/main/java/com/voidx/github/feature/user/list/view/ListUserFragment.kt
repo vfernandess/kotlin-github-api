@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.voidx.github.R
 import com.voidx.github.feature.user.list.UserListContract
-import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 import kotlinx.android.synthetic.main.fragment_list_user.*
+import org.koin.android.scope.currentScope
 
 class ListUserFragment : Fragment(), UserListContract.View {
 
-    val presenter : UserListContract.Presenter by inject { parametersOf(this) }
+    val adapter : ListUserAdapter by currentScope.inject()
 
-    val adapter: ListUserAdapter by inject()
+    val presenter : UserListContract.Presenter by currentScope.inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list_user, container, false)
@@ -32,38 +34,45 @@ class ListUserFragment : Fragment(), UserListContract.View {
     }
 
     override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        (this.loadingContainer as? ShimmerFrameLayout)?.let {
+            it.visibility = VISIBLE
+            it.startShimmer()
+        }
     }
 
     override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        (this.loadingContainer as? ShimmerFrameLayout)?.let {
+            it.stopShimmer()
+            it.visibility = GONE
+        }
     }
 
     override fun showUsers() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.users.visibility = VISIBLE
+        adapter.notifyDataSetChanged()
     }
 
     override fun hideUsers() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.users.visibility = GONE
     }
 
     override fun showUser(name: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO call parent navigation to detail
     }
 
     override fun showError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.errorContainer.visibility = VISIBLE
     }
 
     override fun hideError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.errorContainer.visibility = GONE
     }
 
     override fun showEmptyError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.emptyContainer.visibility = VISIBLE
     }
 
     override fun hideEmpty() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.emptyContainer.visibility = GONE
     }
 }
