@@ -7,7 +7,7 @@ import com.voidx.github.feature.user.list.UserListContract
 class ListUserAdapter(val delegate: UserListContract.Presenter): RecyclerView.Adapter<ListUserHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): ListUserHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return ListUserHolder(parent)
     }
 
     override fun getItemCount(): Int {

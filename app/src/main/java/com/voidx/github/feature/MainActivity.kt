@@ -5,11 +5,15 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.voidx.github.R
+import com.voidx.github.feature.user.list.view.ListUserFragment
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportFragmentManager.beginTransaction().add(R.id.container, ListUserFragment()).commit()
+
     }
 }
