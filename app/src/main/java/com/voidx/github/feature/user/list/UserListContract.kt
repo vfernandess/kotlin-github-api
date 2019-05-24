@@ -17,7 +17,7 @@ interface UserListContract {
 
         fun hideUsers()
 
-        fun showUser(name: String)
+        fun showUser(nick: String)
 
         fun showError()
 

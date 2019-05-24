@@ -19,6 +19,7 @@ class ListUserAdapter(val delegate: UserListContract.Presenter): RecyclerView.Ad
 
     override fun onBindViewHolder(holder: ListUserHolder, position: Int) {
         delegate.putValues(holder, position)
+        holder.containerView.setOnClickListener { delegate.onItemSelected(position) }
     }
 
 }

@@ -16,9 +16,9 @@ interface UserDetailContract {
 
         fun hideError()
 
-        fun showDevInfos(followers: Int, following: Int, blog: String?)
+        fun showDevInfo(followers: String, following: String, repoCount: String, gistCount: String)
 
-        fun showPersonInfos(name: String, location: String?)
+        fun showPersonInfo(name: String, nick: String, avatar: String)
     }
 
     interface Presenter {

@@ -10,5 +10,9 @@ data class UserVO(
     val blog: String?,
     val location: String?,
     val followers: Int,
-    var following: Int
+    var following: Int,
+    @Json(name = "public_repos")
+    val repoCount: Int,
+    @Json(name = "public_gists")
+    var gistCount: Int
 )

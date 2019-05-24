@@ -9,7 +9,8 @@ import io.reactivex.schedulers.Schedulers
 
 class UserDetailPresenter(
     var userDataSource: UserDataSource,
-    var view: UserDetailContract.View): UserDetailContract.Presenter {
+    var view: UserDetailContract.View
+) : UserDetailContract.Presenter {
 
     private var disposable = CompositeDisposable()
 
@@ -19,6 +20,8 @@ class UserDetailPresenter(
             return
         }
 
+        view.hideDetails()
+        view.hideError()
         view.showLoading()
 
         val disposableDetail = userDataSource
@@ -48,8 +51,13 @@ class UserDetailPresenter(
 
         view.showDetails()
 
-        view.showDevInfos(user.followers, user.following, user.blog)
-        view.showPersonInfos(user.name, user.location)
+        view.showDevInfo(
+            user.followers.toString(),
+            user.following.toString(),
+            user.repoCount.toString(),
+            user.gistCount.toString()
+        )
+        view.showPersonInfo(user.name, user.login, user.avatar)
 
     }
 }

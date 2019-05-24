@@ -40,8 +40,8 @@ class UserDetailPresenterTest {
             view.hideLoading()
             view.hideError()
             view.showDetails()
-            view.showDevInfos(any(), any(), any())
-            view.showPersonInfos(any(), any())
+            view.showDevInfo(any(), any(), any())
+            view.showPersonInfo(any(), any())
         }
     }
 
