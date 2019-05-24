@@ -8,16 +8,16 @@
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="@color/colorPrimary"
+            android:padding="@dimen/size_01x"
             android:layout_height="wrap_content">
 
         <ImageView
-                android:id="@+id/photo"
+                android:id="@+id/avatar"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/separator"
-                android:background="@color/colorAccent"
                 android:layout_width="@dimen/empty"
                 android:layout_height="@dimen/empty"/>
 
@@ -32,23 +32,13 @@
         <TextView
                 android:id="@+id/title"
                 android:padding="8dp"
+                android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@+id/separator"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="match_parent"
-                android:textSize="32sp"
-                tools:text="John Doe"
-                android:layout_height="wrap_content"/>
-
-        <TextView
-                android:id="@+id/subTitle"
-                app:layout_constraintTop_toBottomOf="@+id/title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:textSize="24sp"
-                android:padding="8dp"
-                android:layout_width="match_parent"
-                tools:text="\@JD"
+                tools:text="John Doe"
                 android:layout_height="wrap_content"/>
 
     </android.support.constraint.ConstraintLayout>

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.voidx.github.R
 import com.voidx.github.feature.user.list.UserListContract
+import com.voidx.github.view.widget.MarginItemDecoration
 import kotlinx.android.synthetic.main.fragment_list_user.*
 import org.koin.android.scope.currentScope
 
@@ -19,18 +20,20 @@ class ListUserFragment : Fragment(), UserListContract.View {
 
     val presenter : UserListContract.Presenter by currentScope.inject()
 
+    var canLoad = true
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        canLoad = savedInstanceState == null
         return inflater.inflate(R.layout.fragment_list_user, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.users.adapter = this.adapter
-    }
-
-    override fun onStart() {
-        super.onStart()
-        presenter.load()
+        this.users.addItemDecoration(MarginItemDecoration(16))
+        if (canLoad) {
+            presenter.load()
+        }
     }
 
     override fun showLoading() {
