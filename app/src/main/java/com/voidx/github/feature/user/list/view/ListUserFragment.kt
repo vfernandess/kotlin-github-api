@@ -18,7 +18,7 @@ class ListUserFragment : Fragment(), UserListContract.View {
 
     val adapter : ListUserAdapter by currentScope.inject()
 
-    val presenter : UserListContract.Presenter by currentScope.inject()
+    val presenter : UserListContract.Presenter? by currentScope.inject()
 
     var canLoad = true
 
@@ -32,7 +32,7 @@ class ListUserFragment : Fragment(), UserListContract.View {
         this.users.adapter = this.adapter
         this.users.addItemDecoration(MarginItemDecoration(16))
         if (canLoad) {
-            presenter.load()
+            presenter?.load()
         }
     }
 
@@ -78,4 +78,10 @@ class ListUserFragment : Fragment(), UserListContract.View {
     override fun hideEmpty() {
         this.emptyContainer.visibility = GONE
     }
+
+    override fun onDestroy() {
+        presenter?.destroy()
+        super.onDestroy()
+    }
+
 }

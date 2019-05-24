@@ -7,8 +7,8 @@ data class UserVO(
     @Json(name = "avatar_url")
     val avatar: String,
     val name: String,
-    val blog: String,
-    val location: String,
+    val blog: String?,
+    val location: String?,
     val followers: Int,
     var following: Int
 )
