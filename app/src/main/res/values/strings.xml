@@ -5,7 +5,6 @@
     <string name="nick_formatter">\@%1$s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Perfil</string>
 
     <string name="followers_formatter">%1$s \nSeguidores</string>

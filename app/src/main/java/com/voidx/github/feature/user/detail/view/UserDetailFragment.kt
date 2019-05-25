@@ -60,14 +60,14 @@ class UserDetailFragment : Fragment(), UserDetailContract.View {
     }
 
     override fun showLoading() {
-        (this.loadingContainer as? ShimmerFrameLayout)?.let {
+        (this.loadingDetailContainer as? ShimmerFrameLayout)?.let {
             it.visibility = VISIBLE
             it.startShimmer()
         }
     }
 
     override fun hideLoading() {
-        (this.loadingContainer as? ShimmerFrameLayout)?.let {
+        (this.loadingDetailContainer as? ShimmerFrameLayout)?.let {
             it.stopShimmer()
             it.visibility = GONE
         }
@@ -82,11 +82,11 @@ class UserDetailFragment : Fragment(), UserDetailContract.View {
     }
 
     override fun showError() {
-        errorContainer.visibility = VISIBLE
+        errorDetailContainer.visibility = VISIBLE
     }
 
     override fun hideError() {
-        errorContainer.visibility = VISIBLE
+        errorDetailContainer.visibility = GONE
     }
 
     override fun showPersonInfo(name: String, nick: String, avatar: String) {

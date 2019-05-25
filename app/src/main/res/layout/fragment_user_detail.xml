@@ -138,21 +138,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="@dimen/empty"
-            android:layout_height="@dimen/empty"
-            android:id="@+id/loadingContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/loadingDetailContainer"
             android:visibility="gone"
             layout="@layout/loading_detail"/>
 
     <include
-            android:id="@+id/errorContainer"
+            android:id="@+id/errorDetailContainer"
             layout="@layout/unknown"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="@dimen/empty"
-            android:layout_height="@dimen/empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:visibility="gone"/>
 
 </LinearLayout>
