@@ -33,18 +33,20 @@ class UserListPresenterTest {
     }
 
     @Test
-    fun `load github users successfully`() {
+    fun `show github users successfully`() {
 
         every { userDataSource.getUsers() } returns injectUserList()
 
         presenter.load()
 
         verifyAll {
+            view.hideError()
+            view.hideEmpty()
+            view.hideUsers()
             view.showLoading()
             view.hideLoading()
-            view.hideEmpty()
-            view.hideError()
             view.showUsers()
+            view.hideEmpty()
         }
     }
 
@@ -56,10 +58,11 @@ class UserListPresenterTest {
         presenter.load()
 
         verifyAll {
+            view.hideError()
+            view.hideEmpty()
+            view.hideUsers()
             view.showLoading()
             view.hideLoading()
-            view.hideUsers()
-            view.hideEmpty()
             view.showError()
         }
     }
@@ -72,10 +75,12 @@ class UserListPresenterTest {
         presenter.load()
 
         verifyAll {
+            view.hideError()
+            view.hideEmpty()
+            view.hideUsers()
             view.showLoading()
             view.hideLoading()
             view.hideUsers()
-            view.hideError()
             view.showEmptyError()
         }
     }
@@ -88,11 +93,13 @@ class UserListPresenterTest {
         presenter.putValues(itemView, 0)
 
         verifyAll {
+            view.hideError()
+            view.hideEmpty()
+            view.hideUsers()
             view.showLoading()
             view.hideLoading()
-            view.hideEmpty()
-            view.hideError()
             view.showUsers()
+            view.hideEmpty()
         }
 
         verify {
@@ -109,16 +116,15 @@ class UserListPresenterTest {
         presenter.onItemSelected(0)
 
         verifyAll {
+            view.hideError()
+            view.hideEmpty()
+            view.hideUsers()
             view.showLoading()
             view.hideLoading()
-            view.hideEmpty()
-            view.hideError()
             view.showUsers()
-            view.showUser(any())
-        }
-
-        verify {
+            view.hideEmpty()
             itemView.putValues(any(), any())
+            view.showUser(any())
         }
     }
 

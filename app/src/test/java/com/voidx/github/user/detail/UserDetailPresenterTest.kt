@@ -30,18 +30,19 @@ class UserDetailPresenterTest {
     }
 
     @Test
-    fun `show user detail correctly`() {
+    fun `show user detail successfully`() {
         every { userDataSource.getUser("johndoe") } returns injectUser()
 
         presenter.load("johndoe")
 
         verifyAll {
             view.showLoading()
+            view.hideDetails()
             view.hideLoading()
             view.hideError()
             view.showDetails()
-            view.showDevInfo(any(), any(), any())
-            view.showPersonInfo(any(), any())
+            view.showDevInfo(any(), any(), any(), any())
+            view.showPersonInfo(any(), any(), any())
         }
     }
 
@@ -54,6 +55,7 @@ class UserDetailPresenterTest {
 
         verifyAll {
             view.showLoading()
+            view.hideError()
             view.hideLoading()
             view.hideDetails()
             view.showError()

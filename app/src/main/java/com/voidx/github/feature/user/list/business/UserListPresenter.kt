@@ -60,7 +60,6 @@ class UserListPresenter(
 
     private fun handleSuccess(users: List<UserVO>) {
         view.hideLoading()
-        view.hideError()
 
         if (users.isEmpty()) {
             view.hideUsers()
@@ -75,8 +74,6 @@ class UserListPresenter(
 
     private fun handleError(error: Throwable) {
         view.hideLoading()
-        view.hideUsers()
-        view.hideEmpty()
         view.showError()
     }
 
