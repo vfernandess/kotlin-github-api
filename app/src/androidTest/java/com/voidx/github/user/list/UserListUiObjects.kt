@@ -1,6 +1,7 @@
 package com.voidx.github.user.list
 
 import com.voidx.github.data.network.USERS_LIST
+import com.voidx.github.utils.TestUiUtils
 import com.voidx.github.utils.TestUiUtils.Companion.readFixture
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
@@ -15,7 +16,7 @@ class UserListUiObjects {
                 override fun dispatch(request: RecordedRequest): MockResponse {
                     return MockResponse()
                         .setResponseCode(200)
-                        .setBody(readFixture("github_users_list_200.json"))
+                        .setBody(TestUiUtils.readFixture("github_users_list_200.json"))
                 }
             }
         }
