@@ -42,7 +42,7 @@ class UserDetailPresenter(
 
     override fun requestAvatar() {
         avatar?.let {
-            view.showAvatar(it)
+            view.previewAvatar(it)
         }
     }
 
@@ -64,7 +64,13 @@ class UserDetailPresenter(
             user.repoCount.toString(),
             user.gistCount.toString()
         )
-        view.showPersonInfo(user.name, user.login, user.avatar)
+        view.showPersonInfo(user.name, user.login)
+
+        if (user.avatar == null) {
+            view.showEmptyAvatar()
+        } else {
+            view.showAvatar(user.avatar!!)
+        }
 
         this.avatar = user.avatar
     }

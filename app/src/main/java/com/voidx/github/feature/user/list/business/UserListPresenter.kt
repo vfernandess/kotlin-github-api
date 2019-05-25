@@ -54,7 +54,14 @@ class UserListPresenter(
     override fun putValues(view: UserListContract.ItemView, position: Int) {
         users?.let {
             val user = it[position]
-            view.putValues(user.avatar, user.login)
+            view.showNick(user.login)
+
+            if (user.avatar == null) {
+                view.showEmptyAvatar()
+            } else {
+                view.showAvatar(user.avatar!!)
+            }
+
         }
     }
 

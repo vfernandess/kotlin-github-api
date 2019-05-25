@@ -13,14 +13,20 @@ class ListUserHolder(override val containerView: View) :
     UserListContract.ItemView,
     LayoutContainer {
 
-    override fun putValues(photo: String, nick: String) {
+    override fun showNick(nick: String) {
         title.text = containerView.context.getString(R.string.nick_formatter, nick)
-        Glide
-            .with(avatar)
-            .load(photo)
-            .placeholder(R.drawable.ic_profile)
-            .circleCrop()
-            .into(avatar)
     }
 
+    override fun showAvatar(avatar: String) {
+        Glide
+            .with(this.avatar)
+            .load(avatar)
+            .placeholder(R.drawable.ic_profile)
+            .circleCrop()
+            .into(this.avatar)
+    }
+
+    override fun showEmptyAvatar() {
+        this.avatar.setImageResource(R.drawable.ic_profile)
+    }
 }

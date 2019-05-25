@@ -30,13 +30,13 @@ class UserDetailFragment : Fragment(), UserDetailContract.View {
         }
     }
 
-    val presenter : UserDetailContract.Presenter? by currentScope.inject()
+    val presenter: UserDetailContract.Presenter? by currentScope.inject()
 
     var navigator: Navigator? = null
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        if(context is Navigator) {
+        if (context is Navigator) {
             navigator = context
         }
     }
@@ -95,14 +95,9 @@ class UserDetailFragment : Fragment(), UserDetailContract.View {
         errorDetailContainer.visibility = GONE
     }
 
-    override fun showPersonInfo(name: String, nick: String, avatar: String) {
+    override fun showPersonInfo(name: String, nick: String) {
         this.name.text = name
         this.nick.text = getString(R.string.nick_formatter, nick)
-        Glide.with(this)
-            .load(avatar)
-            .placeholder(R.drawable.ic_profile)
-            .circleCrop()
-            .into(this.avatar)
     }
 
     override fun showDevInfo(followers: String, following: String, repoCount: String, gistCount: String) {
@@ -112,7 +107,20 @@ class UserDetailFragment : Fragment(), UserDetailContract.View {
         this.gists.text = getString(R.string.gist_formatter, gistCount)
     }
 
-    override fun showAvatar(avatar: String) {
+    override fun previewAvatar(avatar: String) {
         navigator?.showAvatar(avatar)
     }
+
+    override fun showAvatar(avatar: String) {
+        Glide.with(this)
+            .load(avatar)
+            .placeholder(R.drawable.ic_profile)
+            .circleCrop()
+            .into(this.avatar)
+    }
+
+    override fun showEmptyAvatar() {
+        this.avatar.setImageResource(R.drawable.ic_profile)
+    }
+
 }
