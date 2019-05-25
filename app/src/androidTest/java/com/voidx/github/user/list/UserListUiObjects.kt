@@ -13,15 +13,9 @@ class UserListUiObjects {
         fun injectsUserList(): Dispatcher {
             return object : Dispatcher() {
                 override fun dispatch(request: RecordedRequest): MockResponse {
-                    val pathIndex = request.path.indexOf("?")
-                    val path = if (pathIndex >= 0) request.path.substring(0, pathIndex) else request.path
-                    return when (path) {
-                        USERS_LIST -> MockResponse()
-                            .setResponseCode(200)
-                            .setBody(readFixture("github_users_list_200.json"))
-
-                        else -> MockResponse().setResponseCode(404).setBody(path)
-                    }
+                    return MockResponse()
+                        .setResponseCode(200)
+                        .setBody(readFixture("github_users_list_200.json"))
                 }
             }
         }
@@ -29,15 +23,9 @@ class UserListUiObjects {
         fun injectsEmptyUserList(): Dispatcher {
             return object : Dispatcher() {
                 override fun dispatch(request: RecordedRequest): MockResponse {
-                    val pathIndex = request.path.indexOf("?")
-                    val path = if (pathIndex >= 0) request.path.substring(0, pathIndex) else request.path
-                    return when (path) {
-                        USERS_LIST -> MockResponse()
-                            .setResponseCode(200)
-                            .setBody(readFixture("github_users_list_empty_200.json"))
-
-                        else -> MockResponse().setResponseCode(404).setBody(path)
-                    }
+                    return MockResponse()
+                        .setResponseCode(200)
+                        .setBody(readFixture("github_users_list_empty_200.json"))
                 }
             }
         }

@@ -1,7 +1,7 @@
 package com.voidx.github.user.list
 
-import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.rule.ActivityTestRule
+import android.support.test.runner.AndroidJUnit4
 import br.com.concretesolutions.requestmatcher.InstrumentedTestRequestMatcherRule
 import br.com.concretesolutions.requestmatcher.RequestMatcherRule
 import com.voidx.github.feature.MainActivity
@@ -10,12 +10,20 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class UserListTest {
 
-    private var mMockWebServer: MockWebServer = MockWebServer().apply {
-        this.start(8080)
+
+    private val mockWebServer  = MockWebServer().apply {
+        try {
+            start(8080)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
+
 
     @Rule
     @JvmField
@@ -23,7 +31,7 @@ class UserListTest {
 
     @Rule
     @JvmField
-    var serverRule: RequestMatcherRule = InstrumentedTestRequestMatcherRule(mMockWebServer)
+    var serverRule: RequestMatcherRule = InstrumentedTestRequestMatcherRule(mockWebServer)
 
     lateinit var robot: UserListRobot
 
@@ -40,8 +48,8 @@ class UserListTest {
     @Test
     fun show_github_users_successfully() {
         robot
-            .start()
             .withSuccessfulResponses()
+            .start()
             .checkUsersAreDisplayed()
             .checkEmptyErrorIsNotDisplayed()
             .checkErrorIsNotDisplayed()
@@ -50,8 +58,8 @@ class UserListTest {
     @Test
     fun show_empty_error_successfully() {
         robot
-            .start()
             .withEmptySuccessfulResponses()
+            .start()
             .checkEmptyErrorIsDisplayed()
             .checkUsersAreNotDisplayed()
             .checkErrorIsNotDisplayed()
@@ -60,8 +68,8 @@ class UserListTest {
     @Test
     fun show_error_successfully() {
         robot
-            .start()
             .withErrorResponse()
+            .start()
             .checkErrorIsDisplayed()
             .checkEmptyErrorIsNotDisplayed()
             .checkUsersAreNotDisplayed()
