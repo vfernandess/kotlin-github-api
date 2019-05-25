@@ -58,6 +58,11 @@ class UserDetailFragment : Fragment(), UserDetailContract.View {
         arguments?.getString(EXTRA_USER_NICK)?.let {
             presenter?.load(it)
         }
+
+        this.avatar.setOnClickListener {
+            presenter?.requestAvatar()
+        }
+
     }
 
     override fun showLoading() {
@@ -107,4 +112,7 @@ class UserDetailFragment : Fragment(), UserDetailContract.View {
         this.gists.text = getString(R.string.gist_formatter, gistCount)
     }
 
+    override fun showAvatar(avatar: String) {
+        navigator?.showAvatar(avatar)
+    }
 }

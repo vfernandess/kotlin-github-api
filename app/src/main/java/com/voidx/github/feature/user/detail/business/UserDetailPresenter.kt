@@ -13,6 +13,7 @@ class UserDetailPresenter(
 ) : UserDetailContract.Presenter {
 
     private var disposable = CompositeDisposable()
+    private var avatar: String? = null
 
     override fun load(user: String) {
         if (user.isEmpty() || user.trim().isEmpty()) {
@@ -39,6 +40,12 @@ class UserDetailPresenter(
         disposable.add(disposableDetail)
     }
 
+    override fun requestAvatar() {
+        avatar?.let {
+            view.showAvatar(it)
+        }
+    }
+
     private fun handleError() {
         view.hideLoading()
         view.hideDetails()
@@ -59,5 +66,6 @@ class UserDetailPresenter(
         )
         view.showPersonInfo(user.name, user.login, user.avatar)
 
+        this.avatar = user.avatar
     }
 }

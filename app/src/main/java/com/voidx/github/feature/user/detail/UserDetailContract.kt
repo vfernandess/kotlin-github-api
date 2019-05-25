@@ -19,11 +19,16 @@ interface UserDetailContract {
         fun showDevInfo(followers: String, following: String, repoCount: String, gistCount: String)
 
         fun showPersonInfo(name: String, nick: String, avatar: String)
+
+        fun showAvatar(avatar: String)
     }
 
     interface Presenter {
 
         fun load(user: String)
+
+        fun requestAvatar()
+
     }
 
 }

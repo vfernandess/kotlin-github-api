@@ -14,7 +14,7 @@
         <View
                 android:id="@+id/background_detail_loading"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@color/white"
+                android:background="@color/whte"
                 android:layout_width="match_parent"
                 android:scaleType="fitXY"
                 android:layout_height="@dimen/size_35x"/>
@@ -26,7 +26,7 @@
                 app:layout_constraintHorizontal_chainStyle="spread"
                 android:layout_width="@dimen/empty"
                 app:layout_constraintEnd_toStartOf="@+id/following_detail_loading"
-                android:background="@color/white"
+                android:background="@color/whte"
                 android:layout_height="@dimen/size_07x"/>
 
         <TextView
@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/background_detail_loading"
                 android:layout_width="@dimen/empty"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/white"
+                android:background="@color/whte"
                 android:layout_height="@dimen/size_07x"/>
 
         <TextView
@@ -44,7 +44,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/followers_detail_loading"
                 android:layout_width="@dimen/empty"
-                android:background="@color/white"
+                android:background="@color/whte"
                 android:layout_height="@dimen/size_07x"/>
 
         <TextView
@@ -54,7 +54,7 @@
                 android:padding="@dimen/size_02x"
                 app:layout_constraintStart_toStartOf="@+id/following_detail_loading"
                 android:layout_width="@dimen/empty"
-                android:background="@color/white"
+                android:background="@color/whte"
                 android:layout_height="@dimen/size_07x"/>
 
         <View

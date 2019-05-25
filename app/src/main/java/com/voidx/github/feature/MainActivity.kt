@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.voidx.github.R
 import com.voidx.github.feature.user.detail.view.UserDetailFragment
+import com.voidx.github.feature.user.detail.view.UserPhotoViewerDialogFragment
 import com.voidx.github.feature.user.list.view.ListUserFragment
 import org.koin.android.ext.android.inject
 
 const val LIST = "USERS_LIST"
-const val DETAIL = "DETAIL_LIST"
+const val DETAIL = "USER_DETAIL"
+const val AVATAR = "SHOW_AVATAR"
 
 class MainActivity : AppCompatActivity(), Navigator {
 
@@ -42,4 +44,9 @@ class MainActivity : AppCompatActivity(), Navigator {
             .commit()
     }
 
+    override fun showAvatar(avatar: String) {
+        val dialog = UserPhotoViewerDialogFragment.newInstance(avatar)
+        val transaction = supportFragmentManager.beginTransaction()
+        dialog.show(transaction, AVATAR)
+    }
 }

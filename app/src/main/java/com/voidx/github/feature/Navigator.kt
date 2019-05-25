@@ -6,6 +6,8 @@ interface Navigator {
 
     fun showUserDetail(nick: String)
 
+    fun showAvatar(avatar: String)
+
     fun onBackPressed()
 
 }
