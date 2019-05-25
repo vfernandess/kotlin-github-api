@@ -7,11 +7,14 @@ import com.voidx.github.feature.user.detail.view.UserDetailFragment
 import com.voidx.github.feature.user.list.view.ListUserFragment
 import org.koin.android.ext.android.inject
 
+const val LIST = "USERS_LIST"
+const val DETAIL = "DETAIL_LIST"
+
 class MainActivity : AppCompatActivity(), Navigator {
 
-    val listUserFragment : ListUserFragment by inject()
+    val listUserFragment: ListUserFragment by inject()
 
-    val userDetailFragment : UserDetailFragment by inject()
+    val userDetailFragment: UserDetailFragment by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,17 +23,21 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     override fun showUserList() {
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.container, listUserFragment)
-            .commit()
+        supportFragmentManager.findFragmentByTag(LIST).let {
+            if (it == null) {
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.container, listUserFragment, LIST)
+                    .commit()
+            }
+        }
     }
 
     override fun showUserDetail(nick: String) {
         userDetailFragment.arguments = UserDetailFragment.withArguments(nick)
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.container, userDetailFragment)
+            .add(R.id.container, userDetailFragment, DETAIL)
             .addToBackStack(null)
             .commit()
     }

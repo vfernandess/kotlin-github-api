@@ -22,8 +22,6 @@ class ListUserFragment : Fragment(), UserListContract.View {
 
     val presenter : UserListContract.Presenter? by currentScope.inject()
 
-    var canLoad = true
-
     var navigator: Navigator? = null
 
     override fun onAttach(context: Context?) {
@@ -33,8 +31,12 @@ class ListUserFragment : Fragment(), UserListContract.View {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        canLoad = savedInstanceState == null
         return inflater.inflate(R.layout.fragment_list_user, container, false)
     }
 
@@ -42,9 +44,11 @@ class ListUserFragment : Fragment(), UserListContract.View {
         super.onViewCreated(view, savedInstanceState)
         this.users.adapter = this.adapter
         this.users.addItemDecoration(MarginItemDecoration(16))
-        if (canLoad) {
-            presenter?.load()
-        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter?.load()
     }
 
     override fun showLoading() {
