@@ -48,7 +48,7 @@
                 android:layout_height="@dimen/size_07x"/>
 
         <TextView
-                android:id="@+id/gists"
+                android:id="@+id/gists_detail_loading"
                 app:layout_constraintTop_toBottomOf="@+id/following_detail_loading"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:padding="@dimen/size_02x"
@@ -58,7 +58,7 @@
                 android:layout_height="@dimen/size_07x"/>
 
         <View
-                android:id="@+id/horizontal_separator"
+                android:id="@+id/horizontal_separator_loading"
                 app:layout_constraintTop_toBottomOf="@+id/followers_detail_loading"
                 android:background="@color/alto"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
                 android:layout_height="1dp"/>
 
         <View
-                android:id="@+id/vertical_separator"
+                android:id="@+id/vertical_separator_loading"
                 app:layout_constraintTop_toBottomOf="@+id/background_detail_loading"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
