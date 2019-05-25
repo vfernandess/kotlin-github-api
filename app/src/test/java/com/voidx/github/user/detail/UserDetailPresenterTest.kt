@@ -5,9 +5,11 @@ import com.voidx.github.feature.user.detail.UserDetailContract
 import com.voidx.github.feature.user.detail.business.UserDetailPresenter
 import com.voidx.github.user.detail.UserDetailObjects.Companion.injectError
 import com.voidx.github.user.detail.UserDetailObjects.Companion.injectUser
+import com.voidx.github.user.detail.UserDetailObjects.Companion.injectUserWithoutAvatar
 import com.voidx.github.utils.RxImmediateSchedulerRule
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import io.mockk.verifyAll
 import org.junit.Before
 import org.junit.Rule
@@ -42,7 +44,8 @@ class UserDetailPresenterTest {
             view.hideError()
             view.showDetails()
             view.showDevInfo(any(), any(), any(), any())
-            view.showPersonInfo(any(), any(), any())
+            view.showPersonInfo(any(), any())
+            view.showAvatar(any())
         }
     }
 
@@ -73,6 +76,30 @@ class UserDetailPresenterTest {
             view.hideLoading()
             view.hideDetails()
             view.showError()
+        }
+    }
+
+    @Test
+    fun `show user avatar`() {
+        every { userDataSource.getUser("johndoe") } returns injectUser()
+
+        presenter.load("johndoe")
+        presenter.requestAvatar()
+
+        verify {
+            view.previewAvatar(any())
+        }
+    }
+
+    @Test
+    fun `do not show avatar if user don't have one`() {
+        every { userDataSource.getUser("johndoe") } returns injectUserWithoutAvatar()
+
+        presenter.load("johndoe")
+        presenter.requestAvatar()
+
+        verify(exactly = 0) {
+            view.previewAvatar(any())
         }
     }
 

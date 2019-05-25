@@ -6,10 +6,10 @@ import com.voidx.github.feature.user.list.business.UserListPresenter
 import com.voidx.github.user.list.UserListObjects.Companion.injectEmpty
 import com.voidx.github.user.list.UserListObjects.Companion.injectError
 import com.voidx.github.user.list.UserListObjects.Companion.injectUserList
+import com.voidx.github.user.list.UserListObjects.Companion.injectUserListWithoutAvatar
 import com.voidx.github.utils.RxImmediateSchedulerRule
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
 import io.mockk.verifyAll
 import org.junit.Before
 import org.junit.Rule
@@ -102,8 +102,32 @@ class UserListPresenterTest {
             view.hideEmpty()
         }
 
-        verify {
-            itemView.putValues(any(), any())
+        verifyAll {
+            itemView.showAvatar(any())
+            itemView.showNick(any())
+        }
+    }
+
+    @Test
+    fun `show user item successfully without avatar`() {
+        every { userDataSource.getUsers() } returns injectUserListWithoutAvatar()
+
+        presenter.load()
+        presenter.putValues(itemView, 0)
+
+        verifyAll {
+            view.hideError()
+            view.hideEmpty()
+            view.hideUsers()
+            view.showLoading()
+            view.hideLoading()
+            view.showUsers()
+            view.hideEmpty()
+        }
+
+        verifyAll {
+            itemView.showEmptyAvatar()
+            itemView.showNick(any())
         }
     }
 
@@ -123,7 +147,6 @@ class UserListPresenterTest {
             view.hideLoading()
             view.showUsers()
             view.hideEmpty()
-            itemView.putValues(any(), any())
             view.showUser(any())
         }
     }

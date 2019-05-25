@@ -4,7 +4,11 @@ interface UserListContract {
 
     interface ItemView {
 
-        fun putValues(photo: String, nick: String)
+        fun showNick(nick: String)
+
+        fun showAvatar(avatar: String)
+
+        fun showEmptyAvatar()
     }
 
     interface View {

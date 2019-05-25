@@ -16,6 +16,12 @@ class UserListObjects {
             return Observable.just(result)
         }
 
+        fun injectUserListWithoutAvatar(): Observable<List<UserVO>> {
+            val list = Types.newParameterizedType(List::class.java, UserVO::class.java)
+            val result: List<UserVO>? = TestUtils.getObject("github_users_list_without_avatar_200.json", list)
+            return Observable.just(result)
+        }
+
         fun injectError(): Observable<List<UserVO>> {
             return TestUtils.createConnectionErrorObservable()
         }
